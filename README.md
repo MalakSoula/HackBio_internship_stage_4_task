@@ -48,7 +48,8 @@ A K-Means Clustering model was performed with unsupervised machine learning clus
 
 ## **Visualization** 
 **MA Plot:** The script generates an MA plot to visualize the differential expression results for IDH Wildtype vs Mutant gliomas.
-**PCA Plot:** Displays K-Means clustering results, highlighting clusters with a color guide for clarity.
+
+**Cluster Plot:** The Python script visualizes clusters formed by K-Means, highlighting groups with a color guide to distinguish clusters.
 
 ## Files
 **DESeq2_results_TCGA_LGG.csv:** CSV file containing results from the differential expression analysis.
