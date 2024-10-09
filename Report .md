@@ -38,12 +38,9 @@ K-Means algorithm to perform effectively.
 Using K-Means with six clusters, we identified distinct clusters. The clustering performance was evaluated using the `Silhouette Score`, a measure of how similar samples in the same cluster are compared to those in other clusters. We achieved an impressive Silhouette Score of 84.03%, indicating that the clusters were well-formed and separated.
 
 ### **Visualization**
-To visualize our clustering results, we used **Principal Component Analysis (PCA)** to reduce the data's dimensionality to two components. This reduction allows us to capture a significant portion of the variance in the data, making it easier to plot and interpret.
+To visualize our clustering results ,we plotted the clusters using the first two features of the gene expression data. This allowed us to retain the variance in the dataset while exploring the relationships between samples. The plot showed clear groupings of the gene expression data, with some outliers that could suggest biological variability or noise.
 
-![Figure 2024-10-09 170050](https://github.com/user-attachments/assets/69a70099-6ad7-4e42-bcaf-4423558f45ff)
-
-
-The PCA plot not only shows clear groupings of clusters but also includes a color guide that represents each cluster. Additionally, we notice a few outliers, which might indicate biological variability or technical noise. This unsupervised clustering method provides valuable insights into gene expression patterns and holds significant implications for our understanding of gliomas.
+![Figure 2024-10-09 212710](https://github.com/user-attachments/assets/25ae8153-c30d-4331-8b7a-15bad6d2d6cd)
 
 # **Conclusion**
 
