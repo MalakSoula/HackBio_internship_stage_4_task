@@ -1,4 +1,3 @@
-
 # Load libraries
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -23,31 +22,37 @@ gene_data = gene_data.iloc[:, 1:]
 scaler = StandardScaler()
 gene_data_normalized = pd.DataFrame(scaler.fit_transform(gene_data), columns=gene_data.columns)
 
-
-# Apply PCA to reduce dimensions for visualization
-pca = PCA(n_components=2)  # Reduce to 2 dimensions
-gene_data_pca = pca.fit_transform(gene_data_normalized)
-
-# Display the explained variance ratio by the two principal components
-print("Explained variance by components:", pca.explained_variance_ratio_)
-
-# Apply K-Means clustering
+# Apply K-Means clustering on normalized gene data
 kmeans = KMeans(n_clusters=6, random_state=42)  # Assume 6 clusters based on the six IDH statuses
 clusters = kmeans.fit_predict(gene_data_normalized)
 
 # Add cluster labels to the normalized data
 gene_data_normalized['Cluster'] = clusters
 
+# Calculate and print the silhouette score to assess clustering quality
+silhouette_avg = silhouette_score(gene_data_normalized.drop(columns='Cluster'), clusters)
+silhouette_percentage = silhouette_avg * 100
+print(f'Silhouette Score: {silhouette_percentage:.2f}%')
+
+# Apply PCA to reduce dimensions for visualization
+pca = PCA(n_components=2)  # Reduce to 2 dimensions
+gene_data_pca = pca.fit_transform(gene_data_normalized.drop(columns='Cluster'))
+
+# Display the explained variance ratio by the two principal components
+print("Explained variance by components:", pca.explained_variance_ratio_)
+
 # Plot the clusters based on the first two principal components
 plt.figure(figsize=(10, 7))
-plt.scatter(gene_data_pca[:, 0], gene_data_pca[:, 1], c=clusters, cmap='viridis', marker='o')
+
+# Create a color map for clusters
+scatter = plt.scatter(gene_data_pca[:, 0], gene_data_pca[:, 1], c=clusters, cmap='viridis', marker='o')
+
+# Create color legend
+legend1 = plt.legend(*scatter.legend_elements(), title="Clusters")
+plt.gca().add_artist(legend1)
+
 plt.title('K-Means Clustering of Gene Expression Data (PCA)')
 plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
 plt.colorbar(label='Cluster')
 plt.show()
-
-# Calculate and print the silhouette score to assess clustering quality
-silhouette_avg = silhouette_score(gene_data_normalized.drop(columns='Cluster'), clusters)
-silhouette_percentage = silhouette_avg * 100
-print(f'Silhouette Score: {silhouette_percentage:.2f}%')
