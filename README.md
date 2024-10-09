@@ -43,18 +43,21 @@ The script downloads RNA-seq data from the GDC (TCGA-LGG project) and processes 
 ## Differential Expression Analysis
 The script conducts differential expression analysis using DESeq2, identifying significant differentially expressed genes (DEGs) based on adjusted p-values (padj < 0.05) and log2 fold changes (log2FC > 1).
 
-## Visualization
-MA Plot: The script generates an MA plot to visualize the differential expression results for IDH Wildtype vs Mutant gliomas.
-
 ## Machine learning class.
 A K-Means Clustering model was performed with unsupervised machine learning clustering and trained on the selected features. The model's performance is evaluated using accuracy. Depending on the gene expression data and the classes.
 
-### **Visualization** 
-performing a K-Means Clustering of Gene Expression Data with principal component analysis (PCA)
+## **Visualization** 
+**MA Plot:** The script generates an MA plot to visualize the differential expression results for IDH Wildtype vs Mutant gliomas.
+**PCA Plot:** Displays K-Means clustering results, highlighting clusters with a color guide for clarity.
 
 ## Files
-DESeq2_results_TCGA_LGG.csv: CSV file containing results from the differential expression analysis.
+**DESeq2_results_TCGA_LGG.csv:** CSV file containing results from the differential expression analysis.
 
-New_data.zip (this data as zip file you have to extract the file to a .csv file because the file is bigger than 25MB)
+**New_data.zip:** (this data as zip file you have to extract the file to a .csv file because the file is bigger than 25MB)
 
-labels1.csv
+**labels1.csv:** Contains labels for the samples.
+
+## **Conclusion**
+This project underscores the significance of IDH status in glioma classification, proposing new avenues for research into biomarkers and treatment strategies. By integrating multi-omics data, we aim to refine molecular stratification and enhance our understanding of glioma heterogeneity.
+
+Feel free to explore the code, and don’t hesitate to reach out if you have any questions!
