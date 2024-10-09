@@ -2,7 +2,6 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
-from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
 
@@ -34,25 +33,18 @@ silhouette_avg = silhouette_score(gene_data_normalized.drop(columns='Cluster'), 
 silhouette_percentage = silhouette_avg * 100
 print(f'Silhouette Score: {silhouette_percentage:.2f}%')
 
-# Apply PCA to reduce dimensions for visualization
-pca = PCA(n_components=2)  # Reduce to 2 dimensions
-gene_data_pca = pca.fit_transform(gene_data_normalized.drop(columns='Cluster'))
-
-# Display the explained variance ratio by the two principal components
-print("Explained variance by components:", pca.explained_variance_ratio_)
-
-# Plot the clusters based on the first two principal components
+# Plot the clusters using the first two features of the normalized data
 plt.figure(figsize=(10, 7))
 
 # Create a color map for clusters
-scatter = plt.scatter(gene_data_pca[:, 0], gene_data_pca[:, 1], c=clusters, cmap='viridis', marker='o')
+scatter = plt.scatter(gene_data_normalized.iloc[:, 0], gene_data_normalized.iloc[:, 1], c=clusters, cmap='viridis', marker='o')
 
 # Create color legend
 legend1 = plt.legend(*scatter.legend_elements(), title="Clusters")
 plt.gca().add_artist(legend1)
 
-plt.title('K-Means Clustering of Gene Expression Data (PCA)')
-plt.xlabel('Principal Component 1')
-plt.ylabel('Principal Component 2')
+plt.title('K-Means Clustering of Gene Expression Data (First Two Features)')
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
 plt.colorbar(label='Cluster')
 plt.show()
